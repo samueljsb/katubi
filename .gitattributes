@@ -1,0 +1,5 @@
+*.py diff=python eol=lf
+*.sh whitespace=indent,trail,space eol=lf
+*.md diff=markdown
+*.html diff=html
+*.css diff=css
