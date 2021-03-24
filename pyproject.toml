@@ -6,6 +6,8 @@ authors = ["Samuel Searles-Bryant <sam@samueljsb.co.uk>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+Django = "^3.1.7"
+envparse = "^0.2.0"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
