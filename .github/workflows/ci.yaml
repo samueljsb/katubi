@@ -165,3 +165,13 @@ jobs:
         run: |
           . .venv/bin/activate
           invoke test-functional
+
+  # -----
+  # Build
+  # -----
+
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker/build-push-action@v2
+        id: docker_build
