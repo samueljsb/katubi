@@ -14,11 +14,11 @@ FROM base as build
 
 WORKDIR /build
 
-RUN pip install poetry
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 COPY ./pyproject.toml ./poetry.lock ./
 COPY ./src/katubi ./katubi
-RUN poetry build --format wheel --no-interaction
+RUN $HOME/.poetry/bin/poetry build --format wheel --no-interaction
 
 # -----
 # serve
