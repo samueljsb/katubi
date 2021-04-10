@@ -37,6 +37,9 @@ RUN pip install gunicorn
 COPY ./katubi-admin /usr/bin/katubi-admin
 RUN chmod 755 /usr/bin/katubi-admin
 
+# Collect static files.
+RUN STATIC_ROOT=/src/www/static katubi-admin collectstatic --no-input
+
 # Create an app user.
 RUN useradd --no-create-home --shell /bin/false app-user
 
