@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from django.core.management.utils import get_random_secret_key
 from envparse import env
 
 env.read_envfile()
@@ -18,7 +19,10 @@ DEBUG = env.bool("DEBUG", default=False)
 # Security
 # --------
 
-SECRET_KEY = env.str("SECRET_KEY")
+# This uses a random secret key if none is set. This allows us to run collectstatic
+# during the build process without setting a secret key. Beware using any command that
+# requires a consistent secret key.
+SECRET_KEY = env.str("SECRET_KEY", default=get_random_secret_key())
 
 
 # -------
