@@ -100,10 +100,10 @@ USE_TZ = True
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env.str("DB_NAME"),
-        "USER": env.str("DB_USER"),
-        "PASSWORD": env.str("DB_PASSWORD"),
-        "HOST": env.str("DB_HOST"),
+        "NAME": env.str("DB_NAME", default=""),
+        "USER": env.str("DB_USER", default=""),
+        "PASSWORD": env.str("DB_PASSWORD", default=""),
+        "HOST": env.str("DB_HOST", default=""),
         "PORT": env.str("DB_PORT", default="5432"),
     }
 }
