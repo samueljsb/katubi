@@ -191,6 +191,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v2
         with:
+          build-args:
+            - SENTRY_RELEASE="katubi@${{ github.sha }}"
           push: true
           platforms: linux/arm/v7
           tags: "ghcr.io/${{ github.repository }}:latest"

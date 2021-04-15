@@ -44,5 +44,10 @@ RUN STATIC_ROOT=/srv/www/static katubi-admin collectstatic --no-input
 RUN useradd --no-create-home --shell /bin/false app-user
 
 USER app-user
+
+# Add the Sentry release version to the environment.
+ARG SENTRY_RELEASE
+ENV SENTRY_RELEASE=$SENTRY_RELEASE
+
 ENTRYPOINT ["gunicorn", "katubi.wsgi:application", "--bind", "0.0.0.0:8000"]
 EXPOSE 8000
