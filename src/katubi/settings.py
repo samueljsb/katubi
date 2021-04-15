@@ -1,7 +1,9 @@
 from pathlib import Path
 
+import sentry_sdk
 from django.core.management.utils import get_random_secret_key
 from envparse import env
+from sentry_sdk.integrations.django import DjangoIntegration
 
 env.read_envfile()
 
@@ -135,3 +137,15 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+
+# ------
+# Sentry
+# ------
+
+# SENTRY_DSN, SENTRY_ENVIRONMENT, and SENTRY_RELEASE will be read from the environment.
+sentry_sdk.init(
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True,
+)

@@ -191,9 +191,17 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v2
         with:
+          build-args: "SENTRY_RELEASE=katubi@${{ github.sha }}"
           push: true
           platforms: linux/arm/v7
           tags: "ghcr.io/${{ github.repository }}:latest"
+      - uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          version_prefix: "katubi@"
 
   deploy:
     runs-on: ubuntu-latest
