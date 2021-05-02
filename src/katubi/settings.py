@@ -54,6 +54,7 @@ MIDDLEWARE = [
 # --------------
 
 INSTALLED_APPS = [
+    "katubi.reading_events",
     "katubi.books",
     "django.contrib.admin",
     "django.contrib.auth",
