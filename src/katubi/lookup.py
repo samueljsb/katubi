@@ -30,14 +30,15 @@ def lookup_isbn(isbn: str):
         "q": f"isbn:{isbn}",
         "maxResults": "1",  # we only want the top result
     }
-    r = requests.get("https://www.googleapis.com/books/v1/volumes", params=params)
+    response = requests.get(
+        "https://www.googleapis.com/books/v1/volumes", params=params
+    )
 
     # Check we got a response.
-    r.raise_for_status()
+    response.raise_for_status()
 
     # Extract the data and parse it.
-    print(r.text)
-    data = r.json()
+    data = response.json()
     if data.get("totalItems", 0) == 0:
         raise NotFound(f"No books found with ISBN {isbn}.")
     return _parse_volume(data["items"][0])
