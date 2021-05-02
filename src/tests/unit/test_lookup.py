@@ -4,7 +4,6 @@ import responses
 from katubi import lookup
 
 
-@pytest.mark.xfail(raises=NotImplementedError, reason="Not implemented")
 class TestLookupISBN:
     def test_raises_if_no_books_found(self, json_fixture):
         with responses.RequestsMock() as mock_responses:

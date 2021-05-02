@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
+import requests
+
 
 class NotFound(Exception):
     """
@@ -23,4 +25,29 @@ def lookup_isbn(isbn: str):
 
     Raise NotFound if no books could be found with this ISBN.
     """
-    raise NotImplementedError
+    # Request data form the Google Books API.
+    params = {
+        "q": f"isbn:{isbn}",
+        "maxResults": "1",  # we only want the top result
+    }
+    r = requests.get("https://www.googleapis.com/books/v1/volumes", params=params)
+
+    # Check we got a response.
+    r.raise_for_status()
+
+    # Extract the data and parse it.
+    print(r.text)
+    data = r.json()
+    if data.get("totalItems", 0) == 0:
+        raise NotFound(f"No books found with ISBN {isbn}.")
+    return _parse_volume(data["items"][0])
+
+
+def _parse_volume(data: dict) -> BookInfo:
+    return BookInfo(
+        title=data["volumeInfo"].get("title", ""),
+        subtitle=data["volumeInfo"].get("subtitle", ""),
+        authors=data["volumeInfo"].get("authors", []),
+        description=data["volumeInfo"].get("description", ""),
+        image_url=data["volumeInfo"].get("imageLinks", {}).get("thumbnail"),
+    )
