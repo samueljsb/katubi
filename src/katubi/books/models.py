@@ -6,7 +6,7 @@ from django.db import models
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f"<Author: {self.name} ({self.pk})>"
