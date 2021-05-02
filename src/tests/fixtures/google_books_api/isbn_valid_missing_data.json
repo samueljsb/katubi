@@ -1,0 +1,65 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 1,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "bKapoAEACAAJ",
+      "etag": "HQEhmutSXS0",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/bKapoAEACAAJ",
+      "volumeInfo": {
+        "publishedDate": "2014-09-04",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "0141049197"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9780141049199"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": false
+        },
+        "pageCount": 304,
+        "printType": "BOOK",
+        "categories": ["Decision making"],
+        "averageRating": 4,
+        "ratingsCount": 15,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "preview-1.0.0",
+        "language": "en",
+        "previewLink": "http://books.google.co.uk/books?id=bKapoAEACAAJ&dq=isbn:9780141049199&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.co.uk/books?id=bKapoAEACAAJ&dq=isbn:9780141049199&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Scarcity.html?hl=&id=bKapoAEACAAJ"
+      },
+      "saleInfo": {
+        "country": "GB",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "GB",
+        "viewability": "NO_PAGES",
+        "embeddable": false,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=bKapoAEACAAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "NONE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Why do successful people do things at the last minute in a sudden rush of energy? Here, economist Sendhil Mullainathan and psychologist Eldar Shafir reveal that the hidden side behind all these problems is that they&#39;re all about scarcity."
+      }
+    }
+  ]
+}
