@@ -83,17 +83,22 @@ def test_all(ctx):
 
 @invoke.task
 def test_unit(ctx):
-    with ctx.cd(PROJECT_ROOT / "src"):
-        ctx.run("pytest tests/unit", pty=True)
+    _run_tests(ctx, "tests/unit")
 
 
 @invoke.task
 def test_integration(ctx):
-    with ctx.cd(PROJECT_ROOT / "src"):
-        ctx.run("pytest tests/integration", pty=True)
+    _run_tests(ctx, "tests/integration")
 
 
 @invoke.task
 def test_functional(ctx):
+    _run_tests(ctx, "tests/functional")
+
+
+def _run_tests(ctx, path: str):
     with ctx.cd(PROJECT_ROOT / "src"):
-        ctx.run("pytest tests/functional", pty=True)
+        ctx.run(
+            f"pytest {path}",
+            pty=True,
+        )
