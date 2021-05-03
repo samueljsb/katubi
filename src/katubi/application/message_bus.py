@@ -1,11 +1,14 @@
 from typing import Type
 
-from . import commands, events
+from . import commands, events, handlers
 from .types import Handler, Message
 
 EVENT_HANDLERS: dict[Type[events.Event], list[Handler]] = {}
 
-COMMAND_HANDLERS: dict[Type[commands.Command], Handler] = {}
+COMMAND_HANDLERS: dict[Type[commands.Command], Handler] = {
+    commands.RecordReadingStarted: handlers.record_reading_started,
+    commands.RecordReadingFinished: handlers.record_reading_finished,
+}
 
 
 def handle(message_queue: list[Message]) -> None:
