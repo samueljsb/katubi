@@ -101,4 +101,5 @@ def _run_tests(ctx, path: str):
         ctx.run(
             f"pytest {path}",
             pty=True,
+            env={"DJANGO_SETTINGS_MODULE": "katubi.settings"},
         )
