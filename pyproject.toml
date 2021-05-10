@@ -10,7 +10,7 @@ Django = "^3.2.2"
 envparse = "^0.2.0"
 psycopg2 = "^2.8.6"
 requests = "^2.25.1"
-sentry-sdk = "^1.0.0"
+sentry-sdk = "^1.1.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.5b0"
