@@ -1,7 +1,7 @@
 from typing import Type
 
 from . import commands, events, handlers
-from .types import Handler, Message
+from .types import Handler, MessageQueue
 
 EVENT_HANDLERS: dict[Type[events.Event], list[Handler]] = {}
 
@@ -11,7 +11,7 @@ COMMAND_HANDLERS: dict[Type[commands.Command], Handler] = {
 }
 
 
-def handle(message_queue: list[Message]) -> None:
+def handle(message_queue: MessageQueue) -> None:
     while message_queue:
         next_message = message_queue.pop(0)
 
@@ -24,7 +24,7 @@ def handle(message_queue: list[Message]) -> None:
             raise TypeError("Message not recognised.")
 
 
-def _handle_event(event: events.Event, message_queue: list[Message]) -> None:
+def _handle_event(event: events.Event, message_queue: MessageQueue) -> None:
     """
     Handle the event with each of its configured handlers.
 
@@ -40,7 +40,7 @@ def _handle_event(event: events.Event, message_queue: list[Message]) -> None:
         handler(event, message_queue)
 
 
-def _handle_command(command: commands.Command, message_queue: list[Message]) -> None:
+def _handle_command(command: commands.Command, message_queue: MessageQueue) -> None:
     """
     Handle the command with its configured handlers.
 

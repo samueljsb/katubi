@@ -19,7 +19,7 @@ class BookInfo:
     image_url: Optional[str]
 
 
-def lookup_isbn(isbn: str):
+def lookup_isbn(isbn: str) -> BookInfo:
     """
     Look up a book from its ISBN.
 

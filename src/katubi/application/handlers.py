@@ -1,11 +1,11 @@
 from katubi.reading_events import models as reading_event_models
 
 from . import commands
-from .types import Message
+from .types import MessageQueue
 
 
 def record_reading_started(
-    command: commands.RecordReadingStarted, queue: list[Message]
+    command: commands.RecordReadingStarted, queue: MessageQueue
 ) -> None:
     """
     Record a STARTED reading event.
@@ -19,7 +19,7 @@ def record_reading_started(
 
 
 def record_reading_finished(
-    command: commands.RecordReadingFinished, queue: list[Message]
+    command: commands.RecordReadingFinished, queue: MessageQueue
 ) -> None:
     """
     Record a FINISHED reading event.

@@ -1,11 +1,13 @@
 from typing import Protocol, TypeVar, Union
 
-from . import commands, events
+from .commands import Command
+from .events import Event
 
-Message = Union[commands.Command, events.Event]
-M = TypeVar("M", commands.Command, events.Event, contravariant=True)
+MessageQueue = Union[list[Command], list[Event], list[Union[Command, Event]]]
+
+M = TypeVar("M", Command, Event, contravariant=True)
 
 
 class Handler(Protocol[M]):
-    def __call__(self, __message: M, __queue: list[Message]) -> None:
+    def __call__(self, __message: M, __queue: MessageQueue) -> None:
         ...
