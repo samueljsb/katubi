@@ -1,7 +1,6 @@
 import datetime
 from unittest.mock import patch
 
-import pytest
 from rest_framework.test import APIClient
 
 from katubi import lookup
@@ -121,13 +120,11 @@ class _TestRecordReadingEvent:
         assert response.status_code == 200
 
 
-@pytest.mark.xfail(reason="Not implemented")
 class TestRecordReadingStarted(_TestRecordReadingEvent):
     endpoint = "/api/record-reading-started/"
     event_type = models.EventType.STARTED
 
 
-@pytest.mark.xfail(reason="Not implemented")
 class TestRecordReadingFinished(_TestRecordReadingEvent):
     endpoint = "/api/record-reading-finished/"
     event_type = models.EventType.FINISHED
