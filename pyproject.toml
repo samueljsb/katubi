@@ -6,7 +6,7 @@ authors = ["Samuel Searles-Bryant <sam@samueljsb.co.uk>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^3.2.2"
+Django = "^3.2.3"
 djangorestframework = "^3.12.4"
 envparse = "^0.2.0"
 psycopg2 = "^2.8.6"
