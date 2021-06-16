@@ -502,6 +502,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "types-requests"
+version = "0.1.11"
+description = "Typing stubs for requests"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "3.10.0.0"
 description = "Backported and Experimental Type Hints for Python 3.5+"
@@ -525,7 +533,7 @@ brotli = ["brotlipy (>=0.6.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "f80199f694744c597871e1de4dede1f58608dc5d15ed89e29961580fd963c997"
+content-hash = "d945d34303cdd7fff105ca8cdd5c6ff379423a473a334d3e552536f5e74cff54"
 
 [metadata.files]
 appdirs = [
@@ -807,6 +815,9 @@ typed-ast = [
     {file = "typed_ast-1.4.3-cp39-cp39-win32.whl", hash = "sha256:209596a4ec71d990d71d5e0d312ac935d86930e6eecff6ccc7007fe54d703808"},
     {file = "typed_ast-1.4.3-cp39-cp39-win_amd64.whl", hash = "sha256:9c6d1a54552b5330bc657b7ef0eae25d00ba7ffe85d9ea8ae6540d2197a3788c"},
     {file = "typed_ast-1.4.3.tar.gz", hash = "sha256:fb1bbeac803adea29cedd70781399c99138358c26d05fcbd23c13016b7f5ec65"},
+]
+types-requests = [
+    {file = "types_requests-0.1.11-py2.py3-none-any.whl", hash = "sha256:e79c09e5866c6520cdf23dc260573a0a190444f36b112116fadc5542656c8309"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.0-py2-none-any.whl", hash = "sha256:0ac0f89795dd19de6b97debb0c6af1c70987fd80a2d62d1958f7e56fcc31b497"},
