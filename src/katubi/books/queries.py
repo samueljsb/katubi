@@ -22,3 +22,10 @@ def get_or_create_from_isbn(isbn: str) -> Tuple[models.Book, bool]:
         description=info.description,
         authors=authors,
     )
+
+
+def get_or_create_author(name: str) -> Tuple[models.Author, bool]:
+    """
+    Retrieve or create an Author record.
+    """
+    return models.Author.objects.get_or_create(name=name)
