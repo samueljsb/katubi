@@ -16,7 +16,7 @@ def get_or_create_from_isbn(isbn: str) -> Tuple[models.Book, bool]:
     """
     info = lookup.lookup_isbn(isbn)
     authors = [get_or_create_author(author_name)[0] for author_name in info.authors]
-    return models.Book.get_or_create(
+    return get_or_create_book(
         title=info.title,
         subtitle=info.subtitle,
         description=info.description,
