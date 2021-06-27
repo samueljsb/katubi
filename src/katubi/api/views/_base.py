@@ -1,53 +1,48 @@
-from typing import Type
-
-from rest_framework import request, response, serializers, views
+from rest_framework import generics, request, response, status
 
 from katubi.application import message_bus
 from katubi.application.types import Command
 
 
-class CommandView(views.APIView):
+class CommandView(generics.GenericAPIView):
     """
     An API view to process commands.
 
-    Subclasses should provide a serializer to validate input data and a method to build
-    messages to be handled by the message bus.
+    Subclasses must provide a method to build messages to be handled by the message bus.
     """
-
-    Serializer: Type[serializers.Serializer]
-
-    def get_commands(self, request: request.Request, data: dict) -> list[Command]:
-        """
-        Build the commands this view should process on the message queue.
-
-        This should be implemented by subclasses
-        """
-        raise NotImplementedError
-
-    def get_validated_data(self, request: request.Request) -> dict:
-        """
-        Use the serializer to deserialize and validate the input data.
-
-        Return the validated data.
-        """
-        # Deserialize the data.
-        serializer = self.Serializer(data=request.data)
-
-        # Validate the data.
-        serializer.is_valid(raise_exception=True)
-
-        # Return the validated data.
-        return serializer.validated_data
 
     def post(self, request: request.Request) -> response.Response:
         """
         Create and process the commands for this view.
         """
-        # Validate the request data.
-        data = self.get_validated_data(request)
+        # Validate the data.
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return response.Response(
+                status=status.HTTP_400_BAD_REQUEST, data=serializer.errors
+            )
 
         # Build the commands and handle them on the message bus.
-        commands = self.get_commands(request, data)
+        commands = self.get_commands(request)
         message_bus.handle(commands)
 
-        return response.Response()
+        return response.Response(status=status.HTTP_200_OK)
+
+    def get_commands(self, request: request.Request) -> list[Command]:
+        """
+        Build the commands this view should process on the message queue.
+
+        This must be implemented by subclasses.
+        """
+        raise NotImplementedError
+
+    def _validate_data(self, request: request.Request) -> dict:
+        """
+        Check the parsed data exists and is in a valid form.
+
+        Returns a dict of serializer errors, if there are any.
+        """
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return serializer.errors
+        return {}

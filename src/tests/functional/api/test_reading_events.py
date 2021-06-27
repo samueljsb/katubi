@@ -119,6 +119,19 @@ class _TestRecordReadingEvent:
 
         assert response.status_code == 200
 
+    def test_returns_errors_for_invalid_data(self, api_client):
+        response = api_client.post(
+            self.endpoint,
+            {"isbn": "12345678901234", "date": "2021-05-32"},
+            format="json",
+        )
+
+        assert response.status_code == 400
+        assert response.content.decode() == (
+            '{"isbn":["Ensure this field has no more than 13 characters."],'
+            '"date":["Date has wrong format. Use one of these formats instead: YYYY-MM-DD."]}'
+        )
+
 
 class TestRecordReadingStarted(_TestRecordReadingEvent):
     endpoint = "/api/record-reading-started/"
