@@ -1,7 +1,6 @@
 import datetime
 from unittest.mock import patch
 
-import pytest
 from rest_framework.test import APIClient
 
 from katubi import lookup
@@ -120,7 +119,6 @@ class _TestRecordReadingEvent:
 
         assert response.status_code == 200
 
-    @pytest.mark.xfail(reason="Not implemented")
     def test_returns_errors_for_invalid_data(self, api_client):
         response = api_client.post(
             self.endpoint,

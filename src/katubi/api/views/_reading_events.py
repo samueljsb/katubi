@@ -21,17 +21,17 @@ class RecordReadingStartedFromISBN(base.CommandView):
     The book that is being read is determined from the isbn.
     """
 
-    Serializer = RecordReadingEventFromISBNSerializer
+    serializer_class = RecordReadingEventFromISBNSerializer
 
-    def get_commands(self, request: request.Request, data: dict) -> list[Command]:
+    def get_commands(self, request: request.Request) -> list[Command]:
         # Get or create the book.
         try:
-            book, __ = book_queries.get_or_create_from_isbn(data["isbn"])
+            book, __ = book_queries.get_or_create_from_isbn(request.data["isbn"])
         except lookup.NotFound:
-            raise Http404(f"No book found with ISBN {data['isbn']}")
+            raise Http404(f"No book found with ISBN {request.data['isbn']}")
 
         command = commands.RecordReadingStarted(
-            user=request.user, book=book, started_date=data["date"]
+            user=request.user, book=book, started_date=request.data["date"]
         )
         return [command]
 
@@ -43,16 +43,16 @@ class RecordReadingFinishedFromISBN(base.CommandView):
     The book that is being read is determined from the isbn.
     """
 
-    Serializer = RecordReadingEventFromISBNSerializer
+    serializer_class = RecordReadingEventFromISBNSerializer
 
-    def get_commands(self, request: request.Request, data: dict) -> list[Command]:
+    def get_commands(self, request: request.Request) -> list[Command]:
         # Get or create the book.
         try:
-            book, __ = book_queries.get_or_create_from_isbn(data["isbn"])
+            book, __ = book_queries.get_or_create_from_isbn(request.data["isbn"])
         except lookup.NotFound:
-            raise Http404(f"No book found with ISBN {data['isbn']}")
+            raise Http404(f"No book found with ISBN {request.data['isbn']}")
 
         command = commands.RecordReadingFinished(
-            user=request.user, book=book, finished_date=data["date"]
+            user=request.user, book=book, finished_date=request.data["date"]
         )
         return [command]
