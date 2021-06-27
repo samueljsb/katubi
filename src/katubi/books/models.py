@@ -14,14 +14,6 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
-    @classmethod
-    def new(cls, name: str) -> Author:
-        return cls.objects.create(name=name)
-
-    @classmethod
-    def get_or_create(cls, name: str) -> Tuple[Author, bool]:
-        return cls.objects.get_or_create(name=name)
-
 
 class Book(models.Model):
     title = models.CharField(max_length=512)
