@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import datetime
-
 from django.contrib.auth import models as auth_models
 from django.db import models
 
@@ -27,17 +25,4 @@ class ReadingEvent(models.Model):
         return (
             f"<ReadingEvent: {self.event_type.lower()} reading {self.book.title} on "
             f"{self.occurred_date} ({self.pk})>"
-        )
-
-    @classmethod
-    def new(
-        cls,
-        *,
-        user: auth_models.User,
-        book: book_models.Book,
-        event_type: EventType,
-        occurred_date: datetime.date,
-    ) -> ReadingEvent:
-        return cls.objects.create(
-            user=user, book=book, event_type=event_type, occurred_date=occurred_date
         )
