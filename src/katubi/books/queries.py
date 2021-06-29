@@ -1,4 +1,4 @@
-from typing import Sequence, Tuple
+from typing import Sequence
 
 from django.db.models import Q
 
@@ -7,7 +7,7 @@ from katubi import lookup
 from . import models
 
 
-def get_or_create_from_isbn(isbn: str) -> Tuple[models.Book, bool]:
+def get_or_create_from_isbn(isbn: str) -> tuple[models.Book, bool]:
     """
     Get or create a Book for the given ISBN. Also get/create the necessary Authors.
 
@@ -24,7 +24,7 @@ def get_or_create_from_isbn(isbn: str) -> Tuple[models.Book, bool]:
     )
 
 
-def get_or_create_author(name: str) -> Tuple[models.Author, bool]:
+def get_or_create_author(name: str) -> tuple[models.Author, bool]:
     """
     Retrieve or create an Author record.
     """
@@ -37,7 +37,7 @@ def get_or_create_book(
     authors: Sequence[models.Author],
     subtitle: str = "",
     description: str = "",
-) -> Tuple[models.Book, bool]:
+) -> tuple[models.Book, bool]:
     """
     Get or create a book with this title and authors.
 

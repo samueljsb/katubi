@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import Optional
 
 import requests
 
@@ -14,7 +14,7 @@ class NotFound(Exception):
 class BookInfo:
     title: str
     subtitle: str
-    authors: List[str]
+    authors: list[str]
     description: str
     image_url: Optional[str]
 
