@@ -108,6 +108,24 @@ jobs:
           . .venv/bin/activate
           invoke lint-mypy
 
+  lint-bandit:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{env.PYTHON_VERSION}}
+      - name: Load cached venv
+        uses: actions/cache@v2.1.6
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Run bandit
+        run: |
+          . .venv/bin/activate
+          invoke lint-bandit
+
   # -------
   # Testing
   # -------
@@ -216,6 +234,7 @@ jobs:
       - lint-flake8
       - lint-isort
       - lint-mypy
+      - lint-bandit
       - test-unit
       - test-integration
       - test-functional
