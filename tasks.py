@@ -19,6 +19,7 @@ def lint_all(ctx, fix=False):
     lint_black(ctx, fix=fix)
     lint_flake8(ctx)
     lint_mypy(ctx)
+    lint_bandit(ctx)
     lint_poetry_check(ctx)
 
 
@@ -58,6 +59,12 @@ def lint_mypy(ctx):
     print(">>> type-checking...")
     with ctx.cd(PROJECT_ROOT / "src"):
         ctx.run("mypy .", pty=True)
+
+
+@invoke.task
+def lint_bandit(ctx):
+    print(">>> checking for security issues...")
+    ctx.run("bandit -r src/katubi", pty=True)
 
 
 @invoke.task
