@@ -70,7 +70,7 @@ def lint_bandit(ctx):
 
 @invoke.task
 def lint_django_doctor(ctx):
-    print(">>> checking for security issues...")
+    print(">>> checking Django...")
     ctx.run("django_doctor check", pty=True)
 
 
