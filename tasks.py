@@ -68,6 +68,12 @@ def lint_bandit(ctx):
 
 
 @invoke.task
+def lint_django_doctor(ctx):
+    print(">>> checking for security issues...")
+    ctx.run("django_doctor check", pty=True)
+
+
+@invoke.task
 def lint_poetry_check(ctx):
     print(">>> checking pyproject.toml...")
     ctx.run("poetry check", pty=True)
