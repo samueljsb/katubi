@@ -31,3 +31,13 @@ django-doctor = "^2.5.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.djangodoctor]
+disable = [
+    # ForeignKey missing related_name - https://django.doctor/advice/C2005
+    # We have not defined related names on the reading events models.
+    "missing-related-name",
+    # Model method order - https://django.doctor/advice/C3002
+    # This is more picky than we need here.
+    "model-method-order",
+]
