@@ -20,6 +20,7 @@ def lint_all(ctx, fix=False):
     lint_flake8(ctx)
     lint_mypy(ctx)
     lint_bandit(ctx)
+    lint_django_doctor(ctx)
     lint_poetry_check(ctx)
 
 
@@ -65,6 +66,12 @@ def lint_mypy(ctx):
 def lint_bandit(ctx):
     print(">>> checking for security issues...")
     ctx.run("bandit -r src/katubi", pty=True)
+
+
+@invoke.task
+def lint_django_doctor(ctx):
+    print(">>> checking for security issues...")
+    ctx.run("django_doctor check", pty=True)
 
 
 @invoke.task

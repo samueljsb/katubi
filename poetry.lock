@@ -18,6 +18,32 @@ python-versions = ">=3.6"
 tests = ["pytest", "pytest-asyncio", "mypy (>=0.800)"]
 
 [[package]]
+name = "astroid"
+version = "2.6.2"
+description = "An abstract syntax tree for Python with inference support."
+category = "dev"
+optional = false
+python-versions = "~=3.6"
+
+[package.dependencies]
+lazy-object-proxy = ">=1.4.0"
+wrapt = ">=1.11,<1.13"
+
+[[package]]
+name = "asttokens"
+version = "2.0.5"
+description = "Annotate AST trees with source code positions"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+six = "*"
+
+[package.extras]
+test = ["astroid", "pytest"]
+
+[[package]]
 name = "atomicwrites"
 version = "1.4.0"
 description = "Atomic file writes."
@@ -109,6 +135,17 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "commonmark"
+version = "0.9.1"
+description = "Python parser for the CommonMark Markdown spec"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.extras]
+test = ["flake8 (==3.7.8)", "hypothesis (==3.55.3)"]
+
+[[package]]
 name = "django"
 version = "3.2.5"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
@@ -124,6 +161,24 @@ sqlparse = ">=0.2.2"
 [package.extras]
 argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
+
+[[package]]
+name = "django-doctor"
+version = "2.5.0"
+description = "Find and fix Django mishaps."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+asttokens = ">=2.0.4,<3.0.0"
+black = ">=20.8b0"
+dparse = ">=0.5.1,<1.0.0"
+pylint = ">=2.5.0,<3.0.0"
+rich = "*"
+
+[package.extras]
+test = ["pytest (==5.3.5)", "pytest-cov", "pytest-sugar", "pytest-django", "django-environ (==0.4.5)", "xeger (>=0.3.5,<1.0.0)", "freezegun (>=1.1.0,<2.0.0)", "WebTest (>=2.0.35,<3.0.0)", "coverage (>=5.5.0,<6.0.0)", "tox"]
 
 [[package]]
 name = "django-stubs"
@@ -160,6 +215,22 @@ python-versions = ">=3.5"
 
 [package.dependencies]
 django = ">=2.2"
+
+[[package]]
+name = "dparse"
+version = "0.5.1"
+description = "A parser for Python dependency files"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+packaging = "*"
+pyyaml = "*"
+toml = "*"
+
+[package.extras]
+pipenv = ["pipenv"]
 
 [[package]]
 name = "envparse"
@@ -273,6 +344,14 @@ colors = ["colorama (>=0.4.3,<0.5.0)"]
 plugins = ["setuptools"]
 
 [[package]]
+name = "lazy-object-proxy"
+version = "1.6.0"
+description = "A fast and thorough lazy object proxy."
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+
+[[package]]
 name = "mccabe"
 version = "0.6.1"
 description = "McCabe checker, plugin for flake8"
@@ -374,6 +453,29 @@ description = "passive checker of Python programs"
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
+name = "pygments"
+version = "2.9.0"
+description = "Pygments is a syntax highlighting package written in Python."
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
+name = "pylint"
+version = "2.9.3"
+description = "python code static checker"
+category = "dev"
+optional = false
+python-versions = "~=3.6"
+
+[package.dependencies]
+astroid = ">=2.6.2,<2.7"
+colorama = {version = "*", markers = "sys_platform == \"win32\""}
+isort = ">=4.2.5,<6"
+mccabe = ">=0.6,<0.7"
+toml = ">=0.7.1"
 
 [[package]]
 name = "pyparsing"
@@ -489,6 +591,22 @@ urllib3 = ">=1.25.10"
 tests = ["coverage (>=3.7.1,<6.0.0)", "pytest-cov", "pytest-localserver", "flake8", "pytest (>=4.6,<5.0)", "pytest (>=4.6)", "mypy"]
 
 [[package]]
+name = "rich"
+version = "10.6.0"
+description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+colorama = ">=0.4.0,<0.5.0"
+commonmark = ">=0.9.0,<0.10.0"
+pygments = ">=2.6.0,<3.0.0"
+
+[package.extras]
+jupyter = ["ipywidgets (>=7.5.1,<8.0.0)"]
+
+[[package]]
 name = "sentry-sdk"
 version = "1.3.0"
 description = "Python client for Sentry (https://sentry.io)"
@@ -597,10 +715,18 @@ secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "cer
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 brotli = ["brotlipy (>=0.6.0)"]
 
+[[package]]
+name = "wrapt"
+version = "1.12.1"
+description = "Module for decorators, wrappers and monkey patching."
+category = "dev"
+optional = false
+python-versions = "*"
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "0683efc0536dff2ff97d991ecf32e1181c1b0995c3edbe6823a569f11e808ba7"
+content-hash = "310e4e126f19a007b73dd90ed90461be2e276ddb8dd2a7d266946bc645c132d9"
 
 [metadata.files]
 appdirs = [
@@ -610,6 +736,14 @@ appdirs = [
 asgiref = [
     {file = "asgiref-3.3.4-py3-none-any.whl", hash = "sha256:92906c611ce6c967347bbfea733f13d6313901d54dcca88195eaeb52b2a8e8ee"},
     {file = "asgiref-3.3.4.tar.gz", hash = "sha256:d1216dfbdfb63826470995d31caed36225dcaf34f182e0fa257a4dd9e86f1b78"},
+]
+astroid = [
+    {file = "astroid-2.6.2-py3-none-any.whl", hash = "sha256:606b2911d10c3dcf35e58d2ee5c97360e8477d7b9f3efc3f24811c93e6fc2cd9"},
+    {file = "astroid-2.6.2.tar.gz", hash = "sha256:38b95085e9d92e2ca06cf8b35c12a74fa81da395a6f9e65803742e6509c05892"},
+]
+asttokens = [
+    {file = "asttokens-2.0.5-py2.py3-none-any.whl", hash = "sha256:0844691e88552595a6f4a4281a9f7f79b8dd45ca4ccea82e5e05b4bbdb76705c"},
+    {file = "asttokens-2.0.5.tar.gz", hash = "sha256:9a54c114f02c7a9480d56550932546a3f1fe71d8a02f1bc7ccd0ee3ee35cf4d5"},
 ]
 atomicwrites = [
     {file = "atomicwrites-1.4.0-py2.py3-none-any.whl", hash = "sha256:6d1784dea7c0c8d4a5172b6c620f40b6e4cbfdf96d783691f2e1302a7b88e197"},
@@ -643,9 +777,44 @@ colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
+commonmark = [
+    {file = "commonmark-0.9.1-py2.py3-none-any.whl", hash = "sha256:da2f38c92590f83de410ba1a3cbceafbc74fee9def35f9251ba9a971d6d66fd9"},
+    {file = "commonmark-0.9.1.tar.gz", hash = "sha256:452f9dc859be7f06631ddcb328b6919c67984aca654e5fefb3914d54691aed60"},
+]
 django = [
     {file = "Django-3.2.5-py3-none-any.whl", hash = "sha256:c58b5f19c5ae0afe6d75cbdd7df561e6eb929339985dbbda2565e1cabb19a62e"},
     {file = "Django-3.2.5.tar.gz", hash = "sha256:3da05fea54fdec2315b54a563d5b59f3b4e2b1e69c3a5841dda35019c01855cd"},
+]
+django-doctor = [
+    {file = "django_doctor-2.5.0-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:04931a62dd0b31901084ae4003d025c5fcfd2165022c760fe31814d615e17777"},
+    {file = "django_doctor-2.5.0-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:bc99feefa97caaf8bb99bae40d66b287e85a86837f20a71c87ef2d3ea47cdcf4"},
+    {file = "django_doctor-2.5.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:4fbcf003a017db7062dfc2e4780030771870dd3f5a33f069f47a960307b920ce"},
+    {file = "django_doctor-2.5.0-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:e1c00f6c189eeed8414710967f9982fcd0dd4eaac88e3f9369b4fbcf26bc34a8"},
+    {file = "django_doctor-2.5.0-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:53de38f82731904c360d5496089468c02a0f09c030b903605abd64aa2a9efa77"},
+    {file = "django_doctor-2.5.0-cp36-cp36m-win32.whl", hash = "sha256:69c934ce3b3079491ef659e2312c6342b9faa5e1cec8831f153e2ae725dc690f"},
+    {file = "django_doctor-2.5.0-cp36-cp36m-win_amd64.whl", hash = "sha256:92e2cd10870f8f3a1141582895f007dd9685405c8a969f4edac2763380d6b3b1"},
+    {file = "django_doctor-2.5.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:55a6c4730f89f61ea960001758da779267ed9dbfc6eebf7f5b6d9df9a94b64cd"},
+    {file = "django_doctor-2.5.0-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:a585d760df0e19d321420d3c1598eb3c1056468524431c4a4d36eaa1c12dd5c1"},
+    {file = "django_doctor-2.5.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:05cf09520cb372d456b4c4c8a073ca8cc6cc43baa3c29323369ada3652c80f0e"},
+    {file = "django_doctor-2.5.0-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:a0722479b406ea02625007e9c1f7552590db85255444553aced58701c574aedd"},
+    {file = "django_doctor-2.5.0-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:3092e5284db6e541ff8bde09ad64499b3355f3c613f05d66a451881a819abfcd"},
+    {file = "django_doctor-2.5.0-cp37-cp37m-win32.whl", hash = "sha256:2c4389b829cdbf4b80aa974cb8084f2572e67f4c495c88726c2a412d7c24d392"},
+    {file = "django_doctor-2.5.0-cp37-cp37m-win_amd64.whl", hash = "sha256:6b3b8ec96a7818ecd3c39a43d1bcab3805958a9c07bd0e2c06f827e69c042037"},
+    {file = "django_doctor-2.5.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:4c5244f749c696265a4411d8d4a4cfb889003842e5d198745812732e3f35d29a"},
+    {file = "django_doctor-2.5.0-cp38-cp38-manylinux1_i686.whl", hash = "sha256:7d601ba0f00f633ba200a4aeba371ad614c93c22909ed5ad09ce9cc78a907edd"},
+    {file = "django_doctor-2.5.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:99ca26f89824a0c0df663eb4fe4f50e22505cf5c217ebf9a894cc598ba63a7ee"},
+    {file = "django_doctor-2.5.0-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:dbb4addd70c30df88bdf59a081b75383f0a051f89e8df3a360b8eab01e28c676"},
+    {file = "django_doctor-2.5.0-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:1742e87d15f6576fa41b719526895fecc963085b1c2ed619549040fa52764aa8"},
+    {file = "django_doctor-2.5.0-cp38-cp38-win32.whl", hash = "sha256:4181eefe71a730bf27f01ed47c2aa25e5f95bc9f8a72fd7ec1de02d34a8e3dc6"},
+    {file = "django_doctor-2.5.0-cp38-cp38-win_amd64.whl", hash = "sha256:c43e27a0bab05fb09fe1bf826e96d7d8fae8cc15cd949b1cb2db27eba850370f"},
+    {file = "django_doctor-2.5.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:f34ca610d0c50aacba43c415657f59a81746b27e1c147dcde2d83cb59b662982"},
+    {file = "django_doctor-2.5.0-cp39-cp39-manylinux1_i686.whl", hash = "sha256:7e6cf19d70e540a3397a89a81d6d0155b1edf823663b907dd81327274f45aace"},
+    {file = "django_doctor-2.5.0-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:0ab016e3e12de42e547f73a2787f7f4f6a0b8e6d81c1ca78acc4ef29dbbf4af4"},
+    {file = "django_doctor-2.5.0-cp39-cp39-manylinux2010_i686.whl", hash = "sha256:d39957761ba23734fdb6743f49a6227938d608b01056fae6138f31e3203e50da"},
+    {file = "django_doctor-2.5.0-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:d050115a842512c6dbdc854f9d6e1a262fcc284594edf6aa5493f99007531d48"},
+    {file = "django_doctor-2.5.0-cp39-cp39-win32.whl", hash = "sha256:4acc6c22ad679a9f519a9de959efb8b82a7f8e1b7e15a0fa74b73617cb18efde"},
+    {file = "django_doctor-2.5.0-cp39-cp39-win_amd64.whl", hash = "sha256:7bf968eb53be817333cd1756268060ac676d1ed1cc7584c1bf81fda27f44da4d"},
+    {file = "django_doctor-2.5.0.zip", hash = "sha256:8e201643cc104eb04746676f97309e857c63e490dbed6e8d01f1df4beecbea41"},
 ]
 django-stubs = [
     {file = "django-stubs-1.8.0.tar.gz", hash = "sha256:717967d7fee0a6af0746724a0be80d72831a982a40fa8f245a6a46f4cafd157b"},
@@ -658,6 +827,10 @@ django-stubs-ext = [
 djangorestframework = [
     {file = "djangorestframework-3.12.4-py3-none-any.whl", hash = "sha256:6d1d59f623a5ad0509fe0d6bfe93cbdfe17b8116ebc8eda86d45f6e16e819aaf"},
     {file = "djangorestframework-3.12.4.tar.gz", hash = "sha256:f747949a8ddac876e879190df194b925c177cdeb725a099db1460872f7c0a7f2"},
+]
+dparse = [
+    {file = "dparse-0.5.1-py3-none-any.whl", hash = "sha256:e953a25e44ebb60a5c6efc2add4420c177f1d8404509da88da9729202f306994"},
+    {file = "dparse-0.5.1.tar.gz", hash = "sha256:a1b5f169102e1c894f9a7d5ccf6f9402a836a5d24be80a986c7ce9eaed78f367"},
 ]
 envparse = [
     {file = "envparse-0.2.0.tar.gz", hash = "sha256:4f3b9a27bb55d27f124eb4adf006fec05e4588891c9a054a183a112645056eb7"},
@@ -698,6 +871,30 @@ invoke = [
 isort = [
     {file = "isort-5.9.2-py3-none-any.whl", hash = "sha256:eed17b53c3e7912425579853d078a0832820f023191561fcee9d7cae424e0813"},
     {file = "isort-5.9.2.tar.gz", hash = "sha256:f65ce5bd4cbc6abdfbe29afc2f0245538ab358c14590912df638033f157d555e"},
+]
+lazy-object-proxy = [
+    {file = "lazy-object-proxy-1.6.0.tar.gz", hash = "sha256:489000d368377571c6f982fba6497f2aa13c6d1facc40660963da62f5c379726"},
+    {file = "lazy_object_proxy-1.6.0-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:c6938967f8528b3668622a9ed3b31d145fab161a32f5891ea7b84f6b790be05b"},
+    {file = "lazy_object_proxy-1.6.0-cp27-cp27m-win32.whl", hash = "sha256:ebfd274dcd5133e0afae738e6d9da4323c3eb021b3e13052d8cbd0e457b1256e"},
+    {file = "lazy_object_proxy-1.6.0-cp27-cp27m-win_amd64.whl", hash = "sha256:ed361bb83436f117f9917d282a456f9e5009ea12fd6de8742d1a4752c3017e93"},
+    {file = "lazy_object_proxy-1.6.0-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:d900d949b707778696fdf01036f58c9876a0d8bfe116e8d220cfd4b15f14e741"},
+    {file = "lazy_object_proxy-1.6.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:5743a5ab42ae40caa8421b320ebf3a998f89c85cdc8376d6b2e00bd12bd1b587"},
+    {file = "lazy_object_proxy-1.6.0-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:bf34e368e8dd976423396555078def5cfc3039ebc6fc06d1ae2c5a65eebbcde4"},
+    {file = "lazy_object_proxy-1.6.0-cp36-cp36m-win32.whl", hash = "sha256:b579f8acbf2bdd9ea200b1d5dea36abd93cabf56cf626ab9c744a432e15c815f"},
+    {file = "lazy_object_proxy-1.6.0-cp36-cp36m-win_amd64.whl", hash = "sha256:4f60460e9f1eb632584c9685bccea152f4ac2130e299784dbaf9fae9f49891b3"},
+    {file = "lazy_object_proxy-1.6.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:d7124f52f3bd259f510651450e18e0fd081ed82f3c08541dffc7b94b883aa981"},
+    {file = "lazy_object_proxy-1.6.0-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:22ddd618cefe54305df49e4c069fa65715be4ad0e78e8d252a33debf00f6ede2"},
+    {file = "lazy_object_proxy-1.6.0-cp37-cp37m-win32.whl", hash = "sha256:9d397bf41caad3f489e10774667310d73cb9c4258e9aed94b9ec734b34b495fd"},
+    {file = "lazy_object_proxy-1.6.0-cp37-cp37m-win_amd64.whl", hash = "sha256:24a5045889cc2729033b3e604d496c2b6f588c754f7a62027ad4437a7ecc4837"},
+    {file = "lazy_object_proxy-1.6.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:17e0967ba374fc24141738c69736da90e94419338fd4c7c7bef01ee26b339653"},
+    {file = "lazy_object_proxy-1.6.0-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:410283732af311b51b837894fa2f24f2c0039aa7f220135192b38fcc42bd43d3"},
+    {file = "lazy_object_proxy-1.6.0-cp38-cp38-win32.whl", hash = "sha256:85fb7608121fd5621cc4377a8961d0b32ccf84a7285b4f1d21988b2eae2868e8"},
+    {file = "lazy_object_proxy-1.6.0-cp38-cp38-win_amd64.whl", hash = "sha256:d1c2676e3d840852a2de7c7d5d76407c772927addff8d742b9808fe0afccebdf"},
+    {file = "lazy_object_proxy-1.6.0-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:b865b01a2e7f96db0c5d12cfea590f98d8c5ba64ad222300d93ce6ff9138bcad"},
+    {file = "lazy_object_proxy-1.6.0-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:4732c765372bd78a2d6b2150a6e99d00a78ec963375f236979c0626b97ed8e43"},
+    {file = "lazy_object_proxy-1.6.0-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:9698110e36e2df951c7c36b6729e96429c9c32b3331989ef19976592c5f3c77a"},
+    {file = "lazy_object_proxy-1.6.0-cp39-cp39-win32.whl", hash = "sha256:1fee665d2638491f4d6e55bd483e15ef21f6c8c2095f235fef72601021e64f61"},
+    {file = "lazy_object_proxy-1.6.0-cp39-cp39-win_amd64.whl", hash = "sha256:f5144c75445ae3ca2057faac03fda5a902eff196702b0a24daf1d6ce0650514b"},
 ]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
@@ -770,6 +967,14 @@ pycodestyle = [
 pyflakes = [
     {file = "pyflakes-2.3.1-py2.py3-none-any.whl", hash = "sha256:7893783d01b8a89811dd72d7dfd4d84ff098e5eed95cfa8905b22bbffe52efc3"},
     {file = "pyflakes-2.3.1.tar.gz", hash = "sha256:f5bc8ecabc05bb9d291eb5203d6810b49040f6ff446a756326104746cc00c1db"},
+]
+pygments = [
+    {file = "Pygments-2.9.0-py3-none-any.whl", hash = "sha256:d66e804411278594d764fc69ec36ec13d9ae9147193a1740cd34d272ca383b8e"},
+    {file = "Pygments-2.9.0.tar.gz", hash = "sha256:a18f47b506a429f6f4b9df81bb02beab9ca21d0a5fee38ed15aef65f0545519f"},
+]
+pylint = [
+    {file = "pylint-2.9.3-py3-none-any.whl", hash = "sha256:5d46330e6b8886c31b5e3aba5ff48c10f4aa5e76cbf9002c6544306221e63fbc"},
+    {file = "pylint-2.9.3.tar.gz", hash = "sha256:23a1dc8b30459d78e9ff25942c61bb936108ccbe29dd9e71c01dc8274961709a"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
@@ -873,6 +1078,10 @@ responses = [
     {file = "responses-0.13.3-py2.py3-none-any.whl", hash = "sha256:b54067596f331786f5ed094ff21e8d79e6a1c68ef625180a7d34808d6f36c11b"},
     {file = "responses-0.13.3.tar.gz", hash = "sha256:18a5b88eb24143adbf2b4100f328a2f5bfa72fbdacf12d97d41f07c26c45553d"},
 ]
+rich = [
+    {file = "rich-10.6.0-py3-none-any.whl", hash = "sha256:d3f72827cd5df13b2ef7f1a97f81ec65548d4fdeb92cef653234f227580bbb2a"},
+    {file = "rich-10.6.0.tar.gz", hash = "sha256:128261b3e2419a4ef9c97066ccc2abbfb49fa7c5e89c3fe4056d00aa5e9c1e65"},
+]
 sentry-sdk = [
     {file = "sentry-sdk-1.3.0.tar.gz", hash = "sha256:5210a712dd57d88d225c1fc3fe3a3626fee493637bcd54e204826cf04b8d769c"},
     {file = "sentry_sdk-1.3.0-py2.py3-none-any.whl", hash = "sha256:6864dcb6f7dec692635e5518c2a5c80010adf673c70340817f1a1b713d65bb41"},
@@ -913,4 +1122,7 @@ typing-extensions = [
 urllib3 = [
     {file = "urllib3-1.26.4-py2.py3-none-any.whl", hash = "sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df"},
     {file = "urllib3-1.26.4.tar.gz", hash = "sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937"},
+]
+wrapt = [
+    {file = "wrapt-1.12.1.tar.gz", hash = "sha256:b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7"},
 ]
