@@ -286,6 +286,7 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           version_prefix: "katubi@"
+          environment: production
 
   deploy:
     runs-on: ubuntu-latest
