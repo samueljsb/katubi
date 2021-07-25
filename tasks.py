@@ -90,9 +90,7 @@ def test_all(ctx):
     """
     Run all tests.
     """
-    test_unit(ctx)
-    test_integration(ctx)
-    test_functional(ctx)
+    _run_tests(ctx)
 
 
 @invoke.task
@@ -110,7 +108,7 @@ def test_functional(ctx):
     _run_tests(ctx, "tests/functional")
 
 
-def _run_tests(ctx, path: str):
+def _run_tests(ctx, path: str = ""):
     with ctx.cd(PROJECT_ROOT / "src"):
         ctx.run(
             f"pytest {path}",
