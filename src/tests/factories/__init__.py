@@ -6,3 +6,4 @@ from .reading_events import (  # noqa: F401
     ReadingEvent,
     StartedReadingEvent,
 )
+from .volumes import Volume  # noqa: F401
