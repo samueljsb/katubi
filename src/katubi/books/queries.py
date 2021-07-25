@@ -1,7 +1,5 @@
 from typing import Sequence
 
-from django.db.models import Q
-
 from katubi import lookup
 
 from . import models
@@ -47,9 +45,9 @@ def get_or_create_book(
     If the book does not exist, create it. The subtitle and description are only
     used when creating a new Book instance.
     """
-    books = models.Book.objects.filter(
-        title=title, *(Q(authors=author) for author in authors)
-    )
+    books = models.Book.objects.filter(title=title)
+    for author in authors:
+        books = books.filter(authors=author)
 
     try:
         return books.get(), False
