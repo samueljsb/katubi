@@ -1,7 +1,7 @@
 import pytest
 import responses
 
-from katubi import lookup
+from katubi.volumes.lookup import _google_books as lookup
 
 
 class TestLookupISBN:

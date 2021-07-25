@@ -3,9 +3,9 @@ from unittest.mock import patch
 
 from rest_framework.test import APIClient
 
-from katubi import lookup
 from katubi.books import models as book_models
 from katubi.reading_events import models
+from katubi.volumes.lookup import _google_books as lookup
 from tests import factories
 
 

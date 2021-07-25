@@ -2,7 +2,7 @@ from unittest import mock
 
 import pytest
 
-from katubi import lookup as google_books
+from katubi.volumes.lookup import _google_books as google_books
 from katubi.volumes.lookup import _isbn as isbn_lookup
 from tests import factories
 

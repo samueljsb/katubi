@@ -2,10 +2,11 @@ from typing import Optional, Tuple
 
 import isbnlib
 
-from katubi import lookup as google_books
 from katubi.books import models as book_models
 from katubi.books import queries as book_queries
 from katubi.volumes import models, operations
+
+from . import _google_books as google_books
 
 
 def get_or_create_volume_for_isbn(isbn: str) -> Tuple[models.Volume, bool]:

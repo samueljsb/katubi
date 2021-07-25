@@ -2,7 +2,6 @@ import datetime
 
 from django.contrib.auth import models as auth_models
 
-from katubi import lookup as google_books
 from katubi.books import models as book_models
 from katubi.reading_events import models, operations
 from katubi.volumes import lookup as volume_lookup
@@ -63,7 +62,7 @@ def record_reading_finished_from_isbn(
 def _get_book_for_isbn(isbn: str) -> book_models.Book:
     try:
         volume, __ = volume_lookup.get_or_create_volume_for_isbn(isbn)
-    except google_books.NotFound:
+    except volume_lookup.NotFound:
         raise CannotRecordReadingEvent(f"No information found for ISBN '{isbn}'")
 
     return volume.book

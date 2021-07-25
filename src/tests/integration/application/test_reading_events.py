@@ -3,7 +3,6 @@ from unittest import mock
 
 import pytest
 
-from katubi import lookup as google_books
 from katubi.application import reading_events
 from katubi.reading_events import models
 from katubi.volumes import lookup
@@ -27,7 +26,7 @@ class TestRecordReadingStartedFromISBN:
 
     @mock.patch.object(lookup, "get_or_create_volume_for_isbn")
     def test_raises_if_cannot_find_volume_for_isbn(self, get_or_create_volume_for_isbn):
-        get_or_create_volume_for_isbn.side_effect = google_books.NotFound
+        get_or_create_volume_for_isbn.side_effect = lookup.NotFound
 
         with pytest.raises(reading_events.CannotRecordReadingEvent):
             reading_events.record_reading_started_from_isbn(
@@ -52,7 +51,7 @@ class TestRecordReadingFinishedFromISBN:
 
     @mock.patch.object(lookup, "get_or_create_volume_for_isbn")
     def test_raises_if_cannot_find_volume_for_isbn(self, get_or_create_volume_for_isbn):
-        get_or_create_volume_for_isbn.side_effect = google_books.NotFound
+        get_or_create_volume_for_isbn.side_effect = lookup.NotFound
 
         with pytest.raises(reading_events.CannotRecordReadingEvent):
             reading_events.record_reading_finished_from_isbn(
