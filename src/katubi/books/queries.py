@@ -1,27 +1,6 @@
 from typing import Sequence
 
-from django.db.models import Q
-
-from katubi import lookup
-
 from . import models
-
-
-def get_or_create_from_isbn(isbn: str) -> tuple[models.Book, bool]:
-    """
-    Get or create a Book for the given ISBN. Also get/create the necessary Authors.
-
-    Return the book along with a boolean indicating whether a new record has been
-    created.
-    """
-    info = lookup.lookup_isbn(isbn)
-    authors = [get_or_create_author(author_name)[0] for author_name in info.authors]
-    return get_or_create_book(
-        title=info.title,
-        subtitle=info.subtitle,
-        description=info.description,
-        authors=authors,
-    )
 
 
 def get_or_create_author(name: str) -> tuple[models.Author, bool]:
@@ -47,9 +26,9 @@ def get_or_create_book(
     If the book does not exist, create it. The subtitle and description are only
     used when creating a new Book instance.
     """
-    books = models.Book.objects.filter(
-        title=title, *(Q(authors=author) for author in authors)
-    )
+    books = models.Book.objects.filter(title=title)
+    for author in authors:
+        books = books.filter(authors=author)
 
     try:
         return books.get(), False

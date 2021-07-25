@@ -3,9 +3,9 @@ from unittest.mock import patch
 
 from rest_framework.test import APIClient
 
-from katubi import lookup
 from katubi.books import models as book_models
 from katubi.reading_events import models
+from katubi.volumes.lookup import _google_books as lookup
 from tests import factories
 
 
@@ -36,7 +36,7 @@ class _TestRecordReadingEvent:
     def test_creates_new_reading_event_for_new_book(
         self, mock_lookup_isbn, api_client, katubi_user
     ):
-        book_info = factories.BookInfo()
+        book_info = factories.VolumeInfo()
         mock_lookup_isbn.return_value = book_info
 
         response = api_client.post(
@@ -68,7 +68,7 @@ class _TestRecordReadingEvent:
     ):
         book = factories.Book()
 
-        book_info = factories.BookInfo(
+        book_info = factories.VolumeInfo(
             title=book.title,
             authors=[a.name for a in book.authors.all()],
             subtitle=book.subtitle,
@@ -103,7 +103,7 @@ class _TestRecordReadingEvent:
             occurred_date=datetime.date(2021, 5, 12),
         )
 
-        book_info = factories.BookInfo(
+        book_info = factories.VolumeInfo(
             title=book.title,
             authors=[a.name for a in book.authors.all()],
             subtitle=book.subtitle,

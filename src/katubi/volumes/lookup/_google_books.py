@@ -11,7 +11,7 @@ class NotFound(Exception):
 
 
 @dataclass(frozen=True)
-class BookInfo:
+class VolumeInfo:
     title: str
     subtitle: str
     authors: list[str]
@@ -19,7 +19,7 @@ class BookInfo:
     image_url: Optional[str]
 
 
-def lookup_isbn(isbn: str) -> BookInfo:
+def lookup_isbn(isbn: str) -> VolumeInfo:
     """
     Look up a book from its ISBN.
 
@@ -44,8 +44,8 @@ def lookup_isbn(isbn: str) -> BookInfo:
     return _parse_volume(data["items"][0])
 
 
-def _parse_volume(data: dict) -> BookInfo:
-    return BookInfo(
+def _parse_volume(data: dict) -> VolumeInfo:
+    return VolumeInfo(
         title=data["volumeInfo"].get("title", ""),
         subtitle=data["volumeInfo"].get("subtitle", ""),
         authors=data["volumeInfo"].get("authors", []),

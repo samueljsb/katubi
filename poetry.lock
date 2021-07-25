@@ -333,6 +333,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "isbnlib"
+version = "3.10.8"
+description = "Extract, clean, transform, hyphenate and metadata for ISBNs (International Standard Book Number)."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "isort"
 version = "5.9.2"
 description = "A Python utility / library to sort Python imports."
@@ -737,7 +745,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "ded70711ddc1fcf425047954e63d04b640437240a571ed1be2b4eb37980b23a3"
+content-hash = "b8334f7575f94063cebda21068ab15e1dcf704d8981494e64163dbce8354450e"
 
 [metadata.files]
 appdirs = [
@@ -878,6 +886,10 @@ invoke = [
     {file = "invoke-1.6.0-py2-none-any.whl", hash = "sha256:e6c9917a1e3e73e7ea91fdf82d5f151ccfe85bf30cc65cdb892444c02dbb5f74"},
     {file = "invoke-1.6.0-py3-none-any.whl", hash = "sha256:769e90caeb1bd07d484821732f931f1ad8916a38e3f3e618644687fc09cb6317"},
     {file = "invoke-1.6.0.tar.gz", hash = "sha256:374d1e2ecf78981da94bfaf95366216aaec27c2d6a7b7d5818d92da55aa258d3"},
+]
+isbnlib = [
+    {file = "isbnlib-3.10.8-py2.py3-none-any.whl", hash = "sha256:d086f99a7aa2802f91a1d3d2564df9dc8fe0d90e526c243fc7581d307c7cdb44"},
+    {file = "isbnlib-3.10.8.tar.gz", hash = "sha256:ea406ef2e14388ab396495f0f604d2d3c96cb5a256b96bc0556dd871cd7dc7b4"},
 ]
 isort = [
     {file = "isort-5.9.2-py3-none-any.whl", hash = "sha256:eed17b53c3e7912425579853d078a0832820f023191561fcee9d7cae424e0813"},

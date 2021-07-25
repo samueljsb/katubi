@@ -1,7 +1,7 @@
 import pytest
 import responses
 
-from katubi import lookup
+from katubi.volumes.lookup import _google_books as lookup
 
 
 class TestLookupISBN:
@@ -26,7 +26,7 @@ class TestLookupISBN:
 
             book_info = lookup.lookup_isbn("1234567890123")
 
-        assert book_info == lookup.BookInfo(
+        assert book_info == lookup.VolumeInfo(
             title="Scarcity",
             subtitle="The True Cost of Not Having Enough",
             authors=["Sendhil Mullainathan", "Eldar Shafir"],
@@ -45,7 +45,7 @@ class TestLookupISBN:
 
             book_info = lookup.lookup_isbn("1234567890123")
 
-        assert book_info == lookup.BookInfo(
+        assert book_info == lookup.VolumeInfo(
             title="",
             subtitle="",
             authors=[],
