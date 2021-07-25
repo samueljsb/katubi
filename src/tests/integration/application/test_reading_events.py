@@ -10,7 +10,6 @@ from katubi.volumes import lookup
 from tests import factories
 
 
-@pytest.mark.xfail(reason="Not implemented")
 class TestRecordReadingStartedFromISBN:
     def test_happy_path(self):
         user = factories.User()
@@ -36,7 +35,6 @@ class TestRecordReadingStartedFromISBN:
             )
 
 
-@pytest.mark.xfail(reason="Not implemented")
 class TestRecordReadingFinishedFromISBN:
     def test_happy_path(self):
         user = factories.User()
