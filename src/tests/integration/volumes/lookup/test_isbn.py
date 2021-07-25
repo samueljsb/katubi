@@ -7,7 +7,6 @@ from katubi.volumes.lookup import _isbn as isbn_lookup
 from tests import factories
 
 
-@pytest.mark.xfail(reason="Not implemented")
 class TestGetOrCreateVolumeForIsbn:
     def test_retrieves_existing_volume(self):
         existing_volume = factories.Volume(isbn="9780141049199")
