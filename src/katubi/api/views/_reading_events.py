@@ -1,12 +1,6 @@
-from django.http import Http404
-from rest_framework import request, serializers
+from rest_framework import generics, request, response, serializers, status
 
-from katubi import lookup
-from katubi.application import commands
-from katubi.application.types import Command
-from katubi.books import queries as book_queries
-
-from . import _base as base
+from katubi.application import reading_events
 
 
 class RecordReadingEventFromISBNSerializer(serializers.Serializer):
@@ -14,7 +8,7 @@ class RecordReadingEventFromISBNSerializer(serializers.Serializer):
     date = serializers.DateField()
 
 
-class RecordReadingStartedFromISBN(base.CommandView):
+class RecordReadingStartedFromISBN(generics.GenericAPIView):
     """
     View to record a reading started event.
 
@@ -23,20 +17,28 @@ class RecordReadingStartedFromISBN(base.CommandView):
 
     serializer_class = RecordReadingEventFromISBNSerializer
 
-    def get_commands(self, request: request.Request) -> list[Command]:
-        # Get or create the book.
+    def post(self, request: request.Request) -> response.Response:
+        # Validate the data.
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return response.Response(
+                status=status.HTTP_400_BAD_REQUEST, data=serializer.errors
+            )
+
+        # Record the reading event.
         try:
-            book, __ = book_queries.get_or_create_from_isbn(request.data["isbn"])
-        except lookup.NotFound:
-            raise Http404(f"No book found with ISBN {request.data['isbn']}")
+            reading_events.record_reading_started_from_isbn(
+                isbn=serializer.validated_data["isbn"],
+                date=serializer.validated_data["date"],
+                user=request.user,
+            )
+        except reading_events.CannotRecordReadingEvent:
+            return response.Response(status=status.HTTP_404_NOT_FOUND)
 
-        command = commands.RecordReadingStarted(
-            user=request.user, book=book, started_date=request.data["date"]
-        )
-        return [command]
+        return response.Response(status=status.HTTP_200_OK)
 
 
-class RecordReadingFinishedFromISBN(base.CommandView):
+class RecordReadingFinishedFromISBN(generics.GenericAPIView):
     """
     View to record a reading finished event.
 
@@ -45,14 +47,22 @@ class RecordReadingFinishedFromISBN(base.CommandView):
 
     serializer_class = RecordReadingEventFromISBNSerializer
 
-    def get_commands(self, request: request.Request) -> list[Command]:
-        # Get or create the book.
-        try:
-            book, __ = book_queries.get_or_create_from_isbn(request.data["isbn"])
-        except lookup.NotFound:
-            raise Http404(f"No book found with ISBN {request.data['isbn']}")
+    def post(self, request: request.Request) -> response.Response:
+        # Validate the data.
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return response.Response(
+                status=status.HTTP_400_BAD_REQUEST, data=serializer.errors
+            )
 
-        command = commands.RecordReadingFinished(
-            user=request.user, book=book, finished_date=request.data["date"]
-        )
-        return [command]
+        # Record the reading event.
+        try:
+            reading_events.record_reading_finished_from_isbn(
+                isbn=serializer.validated_data["isbn"],
+                date=serializer.validated_data["date"],
+                user=request.user,
+            )
+        except reading_events.CannotRecordReadingEvent:
+            return response.Response(status=status.HTTP_404_NOT_FOUND)
+
+        return response.Response(status=status.HTTP_200_OK)
