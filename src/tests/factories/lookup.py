@@ -3,9 +3,9 @@ import factory
 from katubi import lookup
 
 
-class BookInfo(factory.Factory):
+class VolumeInfo(factory.Factory):
     class Meta:
-        model = lookup.BookInfo
+        model = lookup.VolumeInfo
 
     title = factory.Faker("sentence", nb_words=4)
     subtitle = factory.Faker("sentence", nb_words=6)
