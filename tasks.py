@@ -65,13 +65,15 @@ def lint_mypy(ctx):
 @invoke.task
 def lint_bandit(ctx):
     print(">>> checking for security issues...")
-    ctx.run("bandit -r src/katubi", pty=True)
+    with ctx.cd(PROJECT_ROOT):
+        ctx.run("bandit -r src/katubi", pty=True)
 
 
 @invoke.task
 def lint_django_doctor(ctx):
     print(">>> checking Django...")
-    ctx.run("django_doctor check", pty=True)
+    with ctx.cd(PROJECT_ROOT):
+        ctx.run("django_doctor check", pty=True)
 
 
 @invoke.task
