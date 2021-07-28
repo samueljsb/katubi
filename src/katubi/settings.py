@@ -1,6 +1,8 @@
+import sys
 from pathlib import Path
 
 import sentry_sdk
+import structlog
 from django.core.management.utils import get_random_secret_key
 from envparse import env
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -15,7 +17,6 @@ SRC_DIR = Path(__file__).resolve().parent.parent
 # -----------
 
 DEBUG = env.bool("DEBUG", default=False)
-
 
 # --------
 # Security
@@ -46,6 +47,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_structlog.middlewares.RequestMiddleware",
 ]
 
 
@@ -116,6 +118,95 @@ DATABASES = {
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+
+# -------
+# Logging
+# -------
+
+
+def _json_console_handler(level: str) -> dict:
+    """
+    Build a JSON handler for logging in production.
+    """
+    return {
+        "class": "logging.StreamHandler",
+        "stream": sys.stdout,
+        "formatter": "json",
+        "filters": ["require_debug_false"],
+        "level": level,
+    }
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
+    "formatters": {
+        "pretty": {
+            "()": structlog.stdlib.ProcessorFormatter,
+            "processor": structlog.dev.ConsoleRenderer(),
+        },
+        "json": {
+            "()": structlog.stdlib.ProcessorFormatter,
+            "processor": structlog.processors.JSONRenderer(),
+        },
+    },
+    "handlers": {
+        "pretty_console": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "pretty",
+            "filters": ["require_debug_true"],  # for development
+            "level": "DEBUG",
+        },
+        "json_console_info": _json_console_handler("INFO"),
+        "json_console_warning": _json_console_handler("WARNING"),
+        "json_console_error": _json_console_handler("ERROR"),
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["json_console_error", "pretty_console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "django_structlog": {
+            "handlers": ["json_console_warning", "pretty_console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "katubi": {
+            "handlers": ["json_console_info", "pretty_console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
+}
+
+structlog.configure(
+    processors=[
+        structlog.stdlib.filter_by_level,
+        structlog.processors.TimeStamper(fmt="iso"),
+        structlog.stdlib.add_logger_name,
+        structlog.stdlib.add_log_level,
+        structlog.stdlib.PositionalArgumentsFormatter(),
+        structlog.processors.StackInfoRenderer(),
+        structlog.processors.format_exc_info,
+        structlog.processors.UnicodeDecoder(),
+        structlog.stdlib.ProcessorFormatter.wrap_for_formatter,
+    ],
+    context_class=structlog.threadlocal.wrap_dict(dict),
+    logger_factory=structlog.stdlib.LoggerFactory(),
+    wrapper_class=structlog.stdlib.BoundLogger,
+    cache_logger_on_first_use=True,
+)
 
 
 # -------
