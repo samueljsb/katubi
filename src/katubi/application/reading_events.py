@@ -2,9 +2,12 @@ import datetime
 
 from django.contrib.auth import models as auth_models
 
+from katubi import logging
 from katubi.books import models as book_models
 from katubi.reading_events import models, operations
 from katubi.volumes import lookup as volume_lookup
+
+logger = logging.get_logger("reading_events")
 
 
 class CannotRecordReadingEvent(Exception):
@@ -28,12 +31,23 @@ def record_reading_started_from_isbn(
     """
     book = _get_book_for_isbn(isbn)
 
-    return operations.record_reading_event(
+    reading_event = operations.record_reading_event(
         user=user,
         book=book,
         event_type=models.EventType.STARTED,
         occurred_date=date,
     )
+
+    logger.info(
+        "Recorded reading started",
+        params={"isbn": isbn, "date": date.isoformat(), "user_id": user.id},
+        metadata={
+            "reading_event_id": reading_event.id,
+            "book_title": reading_event.book.title,
+        },
+    )
+
+    return reading_event
 
 
 def record_reading_finished_from_isbn(
@@ -51,12 +65,23 @@ def record_reading_finished_from_isbn(
     """
     book = _get_book_for_isbn(isbn)
 
-    return operations.record_reading_event(
+    reading_event = operations.record_reading_event(
         user=user,
         book=book,
         event_type=models.EventType.FINISHED,
         occurred_date=date,
     )
+
+    logger.info(
+        "Recorded reading finished",
+        params={"isbn": isbn, "date": date.isoformat(), "user_id": user.id},
+        metadata={
+            "reading_event_id": reading_event.id,
+            "book_title": reading_event.book.title,
+        },
+    )
+
+    return reading_event
 
 
 def _get_book_for_isbn(isbn: str) -> book_models.Book:
