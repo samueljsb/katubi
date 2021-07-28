@@ -184,6 +184,27 @@ rich = "*"
 test = ["pytest (==5.3.5)", "pytest-cov", "pytest-sugar", "pytest-django", "django-environ (==0.4.5)", "xeger (>=0.3.5,<1.0.0)", "freezegun (>=1.1.0,<2.0.0)", "WebTest (>=2.0.35,<3.0.0)", "coverage (>=5.5.0,<6.0.0)", "tox"]
 
 [[package]]
+name = "django-ipware"
+version = "3.0.2"
+description = "A Django utility application that returns client's real IP address"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "django-structlog"
+version = "2.1.1"
+description = "Structured Logging for Django"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django = ">=1.11"
+django-ipware = "*"
+structlog = "*"
+
+[[package]]
 name = "django-stubs"
 version = "1.8.0"
 description = "Mypy stubs for Django"
@@ -811,7 +832,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "5213abd8a0ef35cdfb20393550f0af51c84cfccaba54a101db28565d93e9c114"
+content-hash = "7805921caac0f64e7871efb39099e60e85186cfd29161056129c323892043134"
 
 [metadata.files]
 appdirs = [
@@ -900,6 +921,13 @@ django-doctor = [
     {file = "django_doctor-2.5.0-cp39-cp39-win32.whl", hash = "sha256:4acc6c22ad679a9f519a9de959efb8b82a7f8e1b7e15a0fa74b73617cb18efde"},
     {file = "django_doctor-2.5.0-cp39-cp39-win_amd64.whl", hash = "sha256:7bf968eb53be817333cd1756268060ac676d1ed1cc7584c1bf81fda27f44da4d"},
     {file = "django_doctor-2.5.0.zip", hash = "sha256:8e201643cc104eb04746676f97309e857c63e490dbed6e8d01f1df4beecbea41"},
+]
+django-ipware = [
+    {file = "django-ipware-3.0.2.tar.gz", hash = "sha256:c7df8e1410a8e5d6b1fbae58728402ea59950f043c3582e033e866f0f0cf5e94"},
+]
+django-structlog = [
+    {file = "django-structlog-2.1.1.tar.gz", hash = "sha256:177de7440873043dc9517862c0ea84713c16ff25849359351255e23fa42bb593"},
+    {file = "django_structlog-2.1.1-py3-none-any.whl", hash = "sha256:1531ca6a029d57babec5182a6b2ea9c33edfc6f9190d95826db14861e0cd4c2f"},
 ]
 django-stubs = [
     {file = "django-stubs-1.8.0.tar.gz", hash = "sha256:717967d7fee0a6af0746724a0be80d72831a982a40fa8f245a6a46f4cafd157b"},
