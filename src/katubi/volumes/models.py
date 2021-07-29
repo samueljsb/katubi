@@ -13,8 +13,8 @@ class Volume(models.Model):
     """
 
     book = models.ForeignKey(book_models.Book, on_delete=models.PROTECT)
-    isbn = models.CharField(max_length=13, default="")
-    cover_image_url = models.URLField(default="")
+    isbn = models.CharField(max_length=13, blank=True, default="")
+    cover_image_url = models.URLField(blank=True, default="")
 
     class Meta:
         constraints = [
