@@ -33,7 +33,6 @@ class _TestRecordReadingEvent:
 
         assert response.status_code == 405
 
-    @pytest.mark.xfail(reason="Not implemented")
     @patch.object(lookup, "lookup_isbn", autospec=True)
     def test_creates_new_reading_event_for_new_book(
         self, mock_lookup_isbn, api_client, katubi_user
@@ -70,7 +69,6 @@ class _TestRecordReadingEvent:
         assert reading_event.event_type == self.event_type
         assert reading_event.occurred_date == datetime.date(2021, 5, 12)
 
-    @pytest.mark.xfail(reason="Not implemented")
     @patch.object(lookup, "lookup_isbn", autospec=True)
     def test_creates_new_reading_event_for_existing_book(
         self, mock_lookup_isbn, api_client, katubi_user
@@ -106,7 +104,6 @@ class _TestRecordReadingEvent:
         assert reading_event.event_type == self.event_type
         assert reading_event.occurred_date == datetime.date(2021, 5, 12)
 
-    @pytest.mark.xfail(reason="Not implemented")
     @patch.object(lookup, "lookup_isbn", autospec=True)
     def test_creates_ignores_existing_reading_event_for_existing_book(
         self, mock_lookup_isbn, api_client, katubi_user

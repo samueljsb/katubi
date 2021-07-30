@@ -27,7 +27,7 @@ class RecordReadingStartedFromISBN(generics.GenericAPIView):
 
         # Record the reading event.
         try:
-            reading_events.record_reading_started_from_isbn(
+            event = reading_events.record_reading_started_from_isbn(
                 isbn=serializer.validated_data["isbn"],
                 date=serializer.validated_data["date"],
                 user=request.user,
@@ -35,7 +35,7 @@ class RecordReadingStartedFromISBN(generics.GenericAPIView):
         except reading_events.CannotRecordReadingEvent:
             return response.Response(status=status.HTTP_404_NOT_FOUND)
 
-        return response.Response(status=status.HTTP_200_OK)
+        return response.Response(status=status.HTTP_200_OK, data=f"{event}.")
 
 
 class RecordReadingFinishedFromISBN(generics.GenericAPIView):
@@ -57,7 +57,7 @@ class RecordReadingFinishedFromISBN(generics.GenericAPIView):
 
         # Record the reading event.
         try:
-            reading_events.record_reading_finished_from_isbn(
+            event = reading_events.record_reading_finished_from_isbn(
                 isbn=serializer.validated_data["isbn"],
                 date=serializer.validated_data["date"],
                 user=request.user,
@@ -65,4 +65,4 @@ class RecordReadingFinishedFromISBN(generics.GenericAPIView):
         except reading_events.CannotRecordReadingEvent:
             return response.Response(status=status.HTTP_404_NOT_FOUND)
 
-        return response.Response(status=status.HTTP_200_OK)
+        return response.Response(status=status.HTTP_200_OK, data=f"{event}.")
