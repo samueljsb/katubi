@@ -17,7 +17,7 @@ class _TestRecordReadingEvent:
         client = APIClient()
         response = client.post(
             self.endpoint,
-            {"title": "1234567890123", "authors": [], "date": "2021-05-12"},
+            {"title": "9780141036144", "authors": [], "date": "2021-05-12"},
             format="json",
         )
 
@@ -26,7 +26,7 @@ class _TestRecordReadingEvent:
     def test_get_request_not_allowed(self, api_client):
         response = api_client.get(
             self.endpoint,
-            {"isbn": "1234567890123", "date": "2021-05-12"},
+            {"isbn": "9780141036144", "date": "2021-05-12"},
             format="json",
         )
 
@@ -41,7 +41,7 @@ class _TestRecordReadingEvent:
 
         response = api_client.post(
             self.endpoint,
-            {"isbn": "1234567890123", "date": "2021-05-12"},
+            {"isbn": "9780141036144", "date": "2021-05-12"},
             format="json",
         )
 
@@ -78,7 +78,7 @@ class _TestRecordReadingEvent:
 
         response = api_client.post(
             self.endpoint,
-            {"isbn": "1234567890123", "date": "2021-05-12"},
+            {"isbn": "9780141036144", "date": "2021-05-12"},
             format="json",
         )
 
@@ -113,7 +113,7 @@ class _TestRecordReadingEvent:
 
         response = api_client.post(
             self.endpoint,
-            {"isbn": "1234567890123", "date": "2021-05-12"},
+            {"isbn": "9780141036144", "date": "2021-05-12"},
             format="json",
         )
 
@@ -122,7 +122,7 @@ class _TestRecordReadingEvent:
     def test_returns_errors_for_invalid_data(self, api_client):
         response = api_client.post(
             self.endpoint,
-            {"isbn": "12345678901234", "date": "2021-05-32"},
+            {"isbn": "97801410361444", "date": "2021-05-32"},
             format="json",
         )
 
