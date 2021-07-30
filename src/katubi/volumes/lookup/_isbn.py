@@ -21,17 +21,22 @@ def get_or_create_volume_for_isbn(isbn: str) -> Tuple[models.Volume, bool]:
     Raises NotFound if there is no volume recorded for this ISBN and no information
     could be found from Google Books.
     """
+    # Clean and validate the ISBN.
+    clean_isbn = isbnlib.ean13(isbn)
+    if clean_isbn == "":
+        raise google_books.NotFound("'{isbn}' is not a valid ISBN.")
+
     # Return an existing volume if one exists.
-    volume = _get_volume_for_isbn(isbn)
+    volume = _get_volume_for_isbn(clean_isbn)
     if volume is not None:
         return volume, False
 
     # Create a new volume.
-    volume_info = google_books.lookup_isbn(isbn)
+    volume_info = google_books.lookup_isbn(clean_isbn)
     book = _get_or_create_book(volume_info)
     return (
         operations.new_volume(
-            book=book, isbn=isbn, cover_image_url=volume_info.image_url
+            book=book, isbn=clean_isbn, cover_image_url=volume_info.image_url
         ),
         True,
     )
@@ -43,9 +48,6 @@ def _get_volume_for_isbn(isbn: str) -> Optional[models.Volume]:
 
     If no volume is found with the given ISBN, return None.
     """
-    # Clean the ISBN.
-    isbn = isbnlib.ean13(isbn)
-
     try:
         return models.Volume.objects.get(isbn=isbn)
     except models.Volume.DoesNotExist:

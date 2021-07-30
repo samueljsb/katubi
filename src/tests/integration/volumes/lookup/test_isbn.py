@@ -66,7 +66,6 @@ class TestGetOrCreateVolumeForIsbn:
         with pytest.raises(google_books.NotFound):
             isbn_lookup.get_or_create_volume_for_isbn("978-0-14-104919-9")
 
-    @pytest.mark.xfail(reason="Bug")
     @mock.patch.object(google_books, "lookup_isbn")
     def test_invalid_isbn_raises_not_found(self, lookup_isbn):
         # Make Google Books return a volume so we know that isn't why the method raises.
