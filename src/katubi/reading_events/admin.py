@@ -7,3 +7,4 @@ from . import models
 class ReadingEventAdmin(admin.ModelAdmin):
     date_hierarchy = "occurred_date"
     list_display = ("occurred_date", "user", "event_type", "book")
+    list_filter = ("user", "event_type", "occurred_date")

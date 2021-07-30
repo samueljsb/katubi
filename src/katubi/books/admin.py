@@ -10,4 +10,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("title", "author_names")
+
+    @admin.display(description="Authors")  # type: ignore[attr-defined]
+    def author_names(self, obj):
+        return ", ".join(author.name for author in obj.authors.all())
