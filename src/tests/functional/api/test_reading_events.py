@@ -36,7 +36,7 @@ class _TestRecordReadingEvent:
     def test_creates_new_reading_event_for_new_book(
         self, mock_lookup_isbn, api_client, katubi_user
     ):
-        book_info = factories.VolumeInfo()
+        book_info = factories.VolumeInfo(title="A Book")
         mock_lookup_isbn.return_value = book_info
 
         response = api_client.post(
@@ -46,6 +46,12 @@ class _TestRecordReadingEvent:
         )
 
         assert response.status_code == 200
+
+        # Check the response shows a helpful message.
+        assert (
+            response.json()
+            == f"username {self.event_type.lower()} reading {book_info.title} on 2021-05-12."
+        )
 
         # Check a book has been created.
         book = book_models.Book.objects.get()
@@ -84,6 +90,12 @@ class _TestRecordReadingEvent:
 
         assert response.status_code == 200
 
+        # Check the response shows a helpful message.
+        assert (
+            response.json()
+            == f"username {self.event_type.lower()} reading {book.title} on 2021-05-12."
+        )
+
         # Check a reading event has been created.
         reading_event = models.ReadingEvent.objects.get()
         assert reading_event.user == katubi_user
@@ -119,6 +131,12 @@ class _TestRecordReadingEvent:
 
         assert response.status_code == 200
 
+        # Check the response shows a helpful message.
+        assert (
+            response.json()
+            == f"username {self.event_type.lower()} reading {book.title} on 2021-05-12."
+        )
+
     def test_returns_errors_for_invalid_data(self, api_client):
         response = api_client.post(
             self.endpoint,
@@ -127,10 +145,27 @@ class _TestRecordReadingEvent:
         )
 
         assert response.status_code == 400
-        assert response.content.decode() == (
-            '{"isbn":["Ensure this field has no more than 13 characters."],'
-            '"date":["Date has wrong format. Use one of these formats instead: YYYY-MM-DD."]}'
+        assert response.json() == {
+            "isbn": ["Ensure this field has no more than 13 characters."],
+            "date": [
+                "Date has wrong format. Use one of these formats instead: YYYY-MM-DD."
+            ],
+        }
+
+    @patch.object(lookup, "lookup_isbn", autospec=True)
+    def test_returns_not_found_if_no_information_found_for_isbn(
+        self, mock_lookup_isbn, api_client
+    ):
+        mock_lookup_isbn.side_effect = lookup.NotFound
+
+        response = api_client.post(
+            self.endpoint,
+            {"isbn": "9780141036144", "date": "2021-05-12"},
+            format="json",
         )
+
+        assert response.status_code == 404
+        assert response.json() == "No information found for ISBN '9780141036144'."
 
 
 class TestRecordReadingStarted(_TestRecordReadingEvent):

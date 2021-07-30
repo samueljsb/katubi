@@ -21,8 +21,11 @@ class ReadingEvent(models.Model):
     # Audit field
     recorded_at = models.DateTimeField(auto_now_add=True)
 
-    def __repr__(self):
+    def __str__(self):
         return (
-            f"<ReadingEvent: {self.event_type.lower()} reading {self.book.title} on "
-            f"{self.occurred_date} ({self.pk})>"
+            f"{self.user} {self.event_type.lower()} reading "
+            f"{self.book.title} on {self.occurred_date}"
         )
+
+    def __repr__(self):
+        return f"<ReadingEvent: {self} ({self.pk})>"
