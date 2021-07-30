@@ -88,6 +88,6 @@ def _get_book_for_isbn(isbn: str) -> book_models.Book:
     try:
         volume, __ = volume_lookup.get_or_create_volume_for_isbn(isbn)
     except volume_lookup.NotFound:
-        raise CannotRecordReadingEvent(f"No information found for ISBN '{isbn}'")
+        raise CannotRecordReadingEvent(f"No information found for ISBN '{isbn}'.")
 
     return volume.book

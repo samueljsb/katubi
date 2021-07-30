@@ -1,7 +1,6 @@
 import datetime
 from unittest.mock import patch
 
-import pytest
 from rest_framework.test import APIClient
 
 from katubi.books import models as book_models
@@ -153,7 +152,6 @@ class _TestRecordReadingEvent:
             ],
         }
 
-    @pytest.mark.xfail(reason="Not implemented")
     @patch.object(lookup, "lookup_isbn", autospec=True)
     def test_returns_not_found_if_no_information_found_for_isbn(
         self, mock_lookup_isbn, api_client
