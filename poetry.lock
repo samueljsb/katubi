@@ -190,7 +190,7 @@ python-versions = "*"
 
 [[package]]
 name = "django-structlog"
-version = "2.1.1"
+version = "2.1.2"
 description = "Structured Logging for Django"
 category = "main"
 optional = false
@@ -860,7 +860,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "467e762fd6b0dda4809263dd1fe3f6832d9d9e1c3a171e55638d141eba8f42d5"
+content-hash = "a7c8cb5d80a7a447ae57a39b5f7abc68064c65c61be80f039d142cd87c278a9e"
 
 [metadata.files]
 asgiref = [
@@ -950,8 +950,8 @@ django-ipware = [
     {file = "django-ipware-3.0.2.tar.gz", hash = "sha256:c7df8e1410a8e5d6b1fbae58728402ea59950f043c3582e033e866f0f0cf5e94"},
 ]
 django-structlog = [
-    {file = "django-structlog-2.1.1.tar.gz", hash = "sha256:177de7440873043dc9517862c0ea84713c16ff25849359351255e23fa42bb593"},
-    {file = "django_structlog-2.1.1-py3-none-any.whl", hash = "sha256:1531ca6a029d57babec5182a6b2ea9c33edfc6f9190d95826db14861e0cd4c2f"},
+    {file = "django-structlog-2.1.2.tar.gz", hash = "sha256:9566c7fdf6bfe7e4de9c6138e096a1b8d9d6d57a2fda517c50fe45963a38d1ae"},
+    {file = "django_structlog-2.1.2-py3-none-any.whl", hash = "sha256:3d2003f1dd389c77055f6e2351cfbe0098569abd0468e57656b920ea06472ec6"},
 ]
 django-stubs = [
     {file = "django-stubs-1.9.0.tar.gz", hash = "sha256:664843091636a917faf5256d028476559dc360fdef9050b6df87ab61b21607bf"},
