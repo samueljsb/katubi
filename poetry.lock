@@ -164,7 +164,7 @@ bcrypt = ["bcrypt"]
 
 [[package]]
 name = "django-doctor"
-version = "2.5.0"
+version = "2.6.0"
 description = "Find and fix Django mishaps."
 category = "dev"
 optional = false
@@ -174,11 +174,11 @@ python-versions = "*"
 asttokens = ">=2.0.4,<3.0.0"
 black = ">=20.8b0"
 dparse = ">=0.5.1,<1.0.0"
-pylint = ">=2.5.0,<3.0.0"
+pylint = ">=2.5.0,<=2.11.1"
 rich = "*"
 
 [package.extras]
-test = ["pytest (==5.3.5)", "pytest-cov", "pytest-sugar", "pytest-django", "django-environ (==0.4.5)", "xeger (>=0.3.5,<1.0.0)", "freezegun (>=1.1.0,<2.0.0)", "WebTest (>=2.0.35,<3.0.0)", "coverage (>=5.5.0,<6.0.0)", "tox"]
+test = ["pytest (==5.3.5)", "pytest-cov", "pytest-sugar", "pytest-django", "requests-mock", "WebTest (>=2.0.35,<3.0.0)", "coverage (>=5.5.0,<6.0.0)", "tox"]
 
 [[package]]
 name = "django-ipware"
@@ -860,7 +860,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "9ff256970445bc6ffaf54eabc491e7b9551f31927c36fe224b3251b07d86f361"
+content-hash = "467e762fd6b0dda4809263dd1fe3f6832d9d9e1c3a171e55638d141eba8f42d5"
 
 [metadata.files]
 asgiref = [
@@ -916,35 +916,35 @@ django = [
     {file = "Django-3.2.6.tar.gz", hash = "sha256:f27f8544c9d4c383bbe007c57e3235918e258364577373d4920e9162837be022"},
 ]
 django-doctor = [
-    {file = "django_doctor-2.5.0-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:04931a62dd0b31901084ae4003d025c5fcfd2165022c760fe31814d615e17777"},
-    {file = "django_doctor-2.5.0-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:bc99feefa97caaf8bb99bae40d66b287e85a86837f20a71c87ef2d3ea47cdcf4"},
-    {file = "django_doctor-2.5.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:4fbcf003a017db7062dfc2e4780030771870dd3f5a33f069f47a960307b920ce"},
-    {file = "django_doctor-2.5.0-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:e1c00f6c189eeed8414710967f9982fcd0dd4eaac88e3f9369b4fbcf26bc34a8"},
-    {file = "django_doctor-2.5.0-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:53de38f82731904c360d5496089468c02a0f09c030b903605abd64aa2a9efa77"},
-    {file = "django_doctor-2.5.0-cp36-cp36m-win32.whl", hash = "sha256:69c934ce3b3079491ef659e2312c6342b9faa5e1cec8831f153e2ae725dc690f"},
-    {file = "django_doctor-2.5.0-cp36-cp36m-win_amd64.whl", hash = "sha256:92e2cd10870f8f3a1141582895f007dd9685405c8a969f4edac2763380d6b3b1"},
-    {file = "django_doctor-2.5.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:55a6c4730f89f61ea960001758da779267ed9dbfc6eebf7f5b6d9df9a94b64cd"},
-    {file = "django_doctor-2.5.0-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:a585d760df0e19d321420d3c1598eb3c1056468524431c4a4d36eaa1c12dd5c1"},
-    {file = "django_doctor-2.5.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:05cf09520cb372d456b4c4c8a073ca8cc6cc43baa3c29323369ada3652c80f0e"},
-    {file = "django_doctor-2.5.0-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:a0722479b406ea02625007e9c1f7552590db85255444553aced58701c574aedd"},
-    {file = "django_doctor-2.5.0-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:3092e5284db6e541ff8bde09ad64499b3355f3c613f05d66a451881a819abfcd"},
-    {file = "django_doctor-2.5.0-cp37-cp37m-win32.whl", hash = "sha256:2c4389b829cdbf4b80aa974cb8084f2572e67f4c495c88726c2a412d7c24d392"},
-    {file = "django_doctor-2.5.0-cp37-cp37m-win_amd64.whl", hash = "sha256:6b3b8ec96a7818ecd3c39a43d1bcab3805958a9c07bd0e2c06f827e69c042037"},
-    {file = "django_doctor-2.5.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:4c5244f749c696265a4411d8d4a4cfb889003842e5d198745812732e3f35d29a"},
-    {file = "django_doctor-2.5.0-cp38-cp38-manylinux1_i686.whl", hash = "sha256:7d601ba0f00f633ba200a4aeba371ad614c93c22909ed5ad09ce9cc78a907edd"},
-    {file = "django_doctor-2.5.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:99ca26f89824a0c0df663eb4fe4f50e22505cf5c217ebf9a894cc598ba63a7ee"},
-    {file = "django_doctor-2.5.0-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:dbb4addd70c30df88bdf59a081b75383f0a051f89e8df3a360b8eab01e28c676"},
-    {file = "django_doctor-2.5.0-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:1742e87d15f6576fa41b719526895fecc963085b1c2ed619549040fa52764aa8"},
-    {file = "django_doctor-2.5.0-cp38-cp38-win32.whl", hash = "sha256:4181eefe71a730bf27f01ed47c2aa25e5f95bc9f8a72fd7ec1de02d34a8e3dc6"},
-    {file = "django_doctor-2.5.0-cp38-cp38-win_amd64.whl", hash = "sha256:c43e27a0bab05fb09fe1bf826e96d7d8fae8cc15cd949b1cb2db27eba850370f"},
-    {file = "django_doctor-2.5.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:f34ca610d0c50aacba43c415657f59a81746b27e1c147dcde2d83cb59b662982"},
-    {file = "django_doctor-2.5.0-cp39-cp39-manylinux1_i686.whl", hash = "sha256:7e6cf19d70e540a3397a89a81d6d0155b1edf823663b907dd81327274f45aace"},
-    {file = "django_doctor-2.5.0-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:0ab016e3e12de42e547f73a2787f7f4f6a0b8e6d81c1ca78acc4ef29dbbf4af4"},
-    {file = "django_doctor-2.5.0-cp39-cp39-manylinux2010_i686.whl", hash = "sha256:d39957761ba23734fdb6743f49a6227938d608b01056fae6138f31e3203e50da"},
-    {file = "django_doctor-2.5.0-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:d050115a842512c6dbdc854f9d6e1a262fcc284594edf6aa5493f99007531d48"},
-    {file = "django_doctor-2.5.0-cp39-cp39-win32.whl", hash = "sha256:4acc6c22ad679a9f519a9de959efb8b82a7f8e1b7e15a0fa74b73617cb18efde"},
-    {file = "django_doctor-2.5.0-cp39-cp39-win_amd64.whl", hash = "sha256:7bf968eb53be817333cd1756268060ac676d1ed1cc7584c1bf81fda27f44da4d"},
-    {file = "django_doctor-2.5.0.zip", hash = "sha256:8e201643cc104eb04746676f97309e857c63e490dbed6e8d01f1df4beecbea41"},
+    {file = "django_doctor-2.6.0-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:b61bc12ec0ba70f65fe475e14b74c7581b017d92ffeba42be4af17cd3235cc71"},
+    {file = "django_doctor-2.6.0-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:f5b29478dec617a8755e1319489269f93c66cee3095a03e351b6ab93a27a130c"},
+    {file = "django_doctor-2.6.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:9659114518e5beead1f004a96b49e7c71a0a0976116fde375700f2297a1473af"},
+    {file = "django_doctor-2.6.0-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:a20ca276a7795cad11472c668e9cac179aedb7cbfa0a6f5fb5fd5e5fec634b3a"},
+    {file = "django_doctor-2.6.0-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:e5aa0b5f8d04ef9e83508d5b88f4bd246d6353fbf9b2dfac32a525b8e1475f09"},
+    {file = "django_doctor-2.6.0-cp36-cp36m-win32.whl", hash = "sha256:9ff308e93db0d12280c10261f3e88d9180981dbb9091ee0a425e1c76aa156a82"},
+    {file = "django_doctor-2.6.0-cp36-cp36m-win_amd64.whl", hash = "sha256:9221ff1da290a0b2424d3d5c2c23ed228a48712e3862e1a58aaf9fe58544a979"},
+    {file = "django_doctor-2.6.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:8ea05e5b6eed052b8cd7ad40bed2b7c2945dca2e9c6f8aad2f3794e9d23cdd38"},
+    {file = "django_doctor-2.6.0-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:511f0c75d3511cd128b707fb360f018b0091286a0b7354fa6dfeb7c437bf4104"},
+    {file = "django_doctor-2.6.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:47ae1e0d518cf5aec795a4b11d93a73d861a1b4f734abd2de89cc07f18e9b6fe"},
+    {file = "django_doctor-2.6.0-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:f2680e6bb9e9a7acc62a03e7dd782c0e80ef04b2a5f62a311de08485a77b65ee"},
+    {file = "django_doctor-2.6.0-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:ca806d1b99fe7252c5f2786d38a537f057ed2a8cb2a8a2fb50711e92e2b0e627"},
+    {file = "django_doctor-2.6.0-cp37-cp37m-win32.whl", hash = "sha256:85f300ad83cb9a1a603926a9431f662e3bb79b4cd6be2b9f5274436b04625b65"},
+    {file = "django_doctor-2.6.0-cp37-cp37m-win_amd64.whl", hash = "sha256:567dd84eac882ae902436ad4cca126e944011c70a845ad95e25d899e9c594dcf"},
+    {file = "django_doctor-2.6.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:90bb7622d8668c64c8a8312936e6ad895d0cd7e74b18c122a26fb51d797fbcb5"},
+    {file = "django_doctor-2.6.0-cp38-cp38-manylinux1_i686.whl", hash = "sha256:1744c45ec42749687eec9933d4d903cefec5d8e668cb3fca7f4cc3955a7ced71"},
+    {file = "django_doctor-2.6.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:b3188ffa2873fce902db0581873c22568d4349c40b36f8db0920b2fe6255ef27"},
+    {file = "django_doctor-2.6.0-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:e0fe578a514cc840e7a751e9b7929e05e6cdf75ff3eb76d9f567b73cca0c0029"},
+    {file = "django_doctor-2.6.0-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:3b6e97d25bc3f03ef56ba96691f31d4d05b76e55d9fce7f4cf4583d7c4c6017b"},
+    {file = "django_doctor-2.6.0-cp38-cp38-win32.whl", hash = "sha256:782c448390a9e0234da79c078060281ba04108971445decc40cf00c84d7e80c5"},
+    {file = "django_doctor-2.6.0-cp38-cp38-win_amd64.whl", hash = "sha256:932941fa20d4e39ecd09ae9b7d17cde234ee9265a6228e435a2c2a14f55f02bf"},
+    {file = "django_doctor-2.6.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:75a2b63ce91b50feed7a01e05de4038c6caac41b2f0f67a12e87ba6fead15fad"},
+    {file = "django_doctor-2.6.0-cp39-cp39-manylinux1_i686.whl", hash = "sha256:618860f8e890b2eb016991a28e56d563de6f30964bb9177fb54beaf4642b1e3a"},
+    {file = "django_doctor-2.6.0-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:ee3c7e5e84d13abc4b43db78579479191580e64d43df955c74898b1184813cc5"},
+    {file = "django_doctor-2.6.0-cp39-cp39-manylinux2010_i686.whl", hash = "sha256:bde876be167a4ad0597e0ccec27c1343695a074400b33652ab2541bac58898d7"},
+    {file = "django_doctor-2.6.0-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:733aa22e8f466a171a4b1d13e316211b0afd6d7f73f9f7b47781fc18ca4038a4"},
+    {file = "django_doctor-2.6.0-cp39-cp39-win32.whl", hash = "sha256:bf6fc22ffbec863cb4bc5beaf261305e569b47dfc2e2c4958a780eb58c4130b0"},
+    {file = "django_doctor-2.6.0-cp39-cp39-win_amd64.whl", hash = "sha256:38a9926cb602b8dbf06d62892d92ae9532d542314642c0bc65d119e8d2efab3c"},
+    {file = "django_doctor-2.6.0.zip", hash = "sha256:af27335739e746b4458f360875e80ec66b9bc56de5d2088bc5f8e7114dd08495"},
 ]
 django-ipware = [
     {file = "django-ipware-3.0.2.tar.gz", hash = "sha256:c7df8e1410a8e5d6b1fbae58728402ea59950f043c3582e033e866f0f0cf5e94"},
